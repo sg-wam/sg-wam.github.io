@@ -13,10 +13,11 @@ npm run dev
 ## GitHub Pages
 
 The workflow in `.github/workflows/deploy-pages.yml` builds a static export and
-deploys it to GitHub Pages after every push to `main`.
+deploys it to GitHub Pages. It is intentionally set to manual dispatch while
+the repository is being prepared privately.
 
-Before the first deployment, open **Settings → Pages** in the GitHub repository
-and select **GitHub Actions** as the source.
+When the project is ready to be public, open **Settings → Pages** in the GitHub
+repository, select **GitHub Actions** as the source, and run the workflow.
 
 The workflow reads the Pages base URL and base path automatically, so it works
 for both `username.github.io` repositories and project sites hosted under
