@@ -1,6 +1,9 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetPath = (path: string) => `${basePath}${path}`;
+
 const authors = [
   ["Ruiteng Zhao", "https://openreview.net/profile?id=~Ruiteng_Zhao1"],
   ["Zhengshen Zhang", "https://openreview.net/profile?id=~Zhengshen_Zhang1"],
@@ -83,7 +86,7 @@ export default function Home() {
           <a href="#results">Results</a>
           <a href="#citation">Citation</a>
         </nav>
-        <a className="header-paper" href="/sg-wam-paper.pdf">
+        <a className="header-paper" href={assetPath("/sg-wam-paper.pdf")}>
           Paper <span aria-hidden="true">↗</span>
         </a>
       </header>
@@ -113,7 +116,10 @@ export default function Home() {
             </div>
 
             <div className="hero__actions">
-              <a className="button button--dark" href="/sg-wam-paper.pdf">
+              <a
+                className="button button--dark"
+                href={assetPath("/sg-wam-paper.pdf")}
+              >
                 Read the paper <span aria-hidden="true">↗</span>
               </a>
               <a className="button button--ghost" href="#method">
@@ -230,7 +236,7 @@ export default function Home() {
 
           <figure className="paper-figure">
             <Image
-              src="/comparison.png"
+              src={assetPath("/comparison.png")}
               width={1800}
               height={988}
               alt="Conceptual comparison between explicit and auxiliary latent world modeling and SG-WAM's policy-space approach"
@@ -239,7 +245,7 @@ export default function Home() {
               <span>Figure 01 · Concept</span>
               SG-WAM learns action-conditioned latent dynamics inside a shared,
               geometry-aware policy representation.
-              <a href="/comparison.pdf">Original figure ↗</a>
+              <a href={assetPath("/comparison.pdf")}>Original figure ↗</a>
             </figcaption>
           </figure>
         </section>
@@ -358,7 +364,7 @@ export default function Home() {
                 inference.
               </p>
             </div>
-            <a href="/sg-wam-overview.pdf">
+            <a href={assetPath("/sg-wam-overview.pdf")}>
               View full framework <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -503,13 +509,13 @@ export default function Home() {
           </div>
 
           <div className="figure-links">
-            <a href="/realworld-setup.pdf">
+            <a href={assetPath("/realworld-setup.pdf")}>
               Real-world setup &amp; tasks <span aria-hidden="true">↗</span>
             </a>
-            <a href="/ood-settings.pdf">
+            <a href={assetPath("/ood-settings.pdf")}>
               OOD evaluation settings <span aria-hidden="true">↗</span>
             </a>
-            <a href="/attention-map.pdf">
+            <a href={assetPath("/attention-map.pdf")}>
               Geometry attention maps <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -617,7 +623,10 @@ export default function Home() {
               Explore the full manuscript for architecture details,
               experimental protocols, and complete ablations.
             </p>
-            <a className="button button--light" href="/sg-wam-paper.pdf">
+            <a
+              className="button button--light"
+              href={assetPath("/sg-wam-paper.pdf")}
+            >
               Download paper <span aria-hidden="true">↓</span>
             </a>
           </div>
