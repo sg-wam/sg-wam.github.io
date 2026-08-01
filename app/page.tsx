@@ -15,6 +15,20 @@ const authors = [
   ["Haiyue Zhu", "https://openreview.net/profile?id=~Haiyue_Zhu1"],
 ] as const;
 
+const institutions = [
+  ["National University of Singapore", "/nus-logo-clean.png", "nus"],
+  ["Nanyang Technological University", "/ntu-logo-clean.png", "ntu"],
+  ["The University of Hong Kong", "/hku-logo-cropped.png", "hku"],
+] as const;
+
+const keywords = [
+  "Vision-Language-Action",
+  "World Action Modeling",
+  "Geometry-Aware Policy",
+  "Robotic Manipulation",
+  "Latent Dynamics",
+] as const;
+
 const bibtex = `@misc{zhao2027sgwam,
   title  = {SG-WAM: Self-Guided World Modeling in
             Geometry-Aware Policy Space},
@@ -25,73 +39,48 @@ const bibtex = `@misc{zhao2027sgwam,
   year   = {2027}
 }`;
 
-const realWorldTasks = [
-  {
-    title: "Pick and Place",
-    image: "/pick-place.png",
-    imageHeight: 384,
-    settings: [
-      ["ID", 35, 30, 75],
-      ["Background", 20, 15, 55],
-      ["Light Change", 25, 10, 60],
-      ["Novel Object", 20, 10, 40],
-    ],
-  },
-  {
-    title: "Towel Folding",
-    image: "/towel-folding.png",
-    imageHeight: 387,
-    settings: [
-      ["ID", 20, 35, 45],
-      ["Background", 10, 15, 25],
-      ["Light Change", 10, 15, 35],
-      ["Novel Object", 15, 10, 25],
-    ],
-  },
-  {
-    title: "Toolbox Organization",
-    image: "/toolbox-organization.png",
-    imageHeight: 384,
-    settings: [["ID", 20, 30, 50]],
-  },
+const realWorldRows = [
+  ["VLA-JEPA", "35%", "20%", "25%", "20%", "20%", "10%", "10%", "15%", "20%"],
+  ["VPP", "30%", "15%", "10%", "10%", "35%", "15%", "15%", "10%", "30%"],
+  ["SG-WAM", "75%", "55%", "60%", "40%", "45%", "25%", "35%", "25%", "50%"],
 ] as const;
 
-function TaskResultCard({ task }: { task: (typeof realWorldTasks)[number] }) {
+const liberoVideos = [
+  ["Camera Viewpoint", "/video/libero_exp/ce8b996470bc2c749b9dbc44b7e49be0.mp4"],
+  ["Sensor Noise", "/video/libero_exp/ac1789a6692939716fcbb8d6274d083b.mp4"],
+  ["Robot Initial State", "/video/libero_exp/a47277add93ed9751d3351cb96c5cdfb.mp4"],
+  ["Object Layout", "/video/libero_exp/9d60af3bbc2e0b6e7ff6930076821f9d.mp4"],
+  ["Language Instruction", "/video/libero_exp/8f7096fb6c0bf95eeef57c3819587258.mp4"],
+  ["Background Texture", "/video/libero_exp/3679dae9765765efe8f453149c4095c4.mp4"],
+  ["Light Condition", "/video/libero_exp/15bedb32c71a874d2ea9cd387570cc83.mp4"],
+] as const;
+
+const realDeploymentVideos = [
+  ["Pick and Place", "/video/real_deployment_exp/d24d226f7f8d8051deb5aba14b037502.mp4"],
+  ["Pick and Place - Background", "/video/real_deployment_exp/f1e76ffffa17323b17b3cf93c5b409ca.mp4"],
+  ["Pick and Place - Light", "/video/real_deployment_exp/56981ef9461afa6f53938f1936740a57.mp4"],
+  ["Pick and Place - Novel Object", "/video/real_deployment_exp/2729c09e61335607f39be93cd605cecb.mp4"],
+  ["Towel Folding", "/video/real_deployment_exp/d232119f9ccfed6f429dbd14faa0836c.mp4"],
+  ["Towel Folding - Background", "/video/real_deployment_exp/ood.mp4"],
+  ["Towel Folding - Light", "/video/real_deployment_exp/9ad9cb74b4c3ac244c0a6b2e2f4a3b41.mp4"],
+  ["Towel Folding - Novel Object", "/video/real_deployment_exp/e4a628445d3247f2c4bcf6a3200b52ee.mp4"],
+  ["Toolbox Organization", "/video/real_deployment_exp/a77f18e9953e0c8ef1a9ce7ea2cf626e.mp4"],
+] as const;
+
+function ExperimentVideoCard({
+  title,
+  src,
+}: {
+  title: string;
+  src: string;
+}) {
   return (
-    <article className="task-result-card">
-      <div className="task-result-card__visual">
-        <Image
-          src={asset(task.image)}
-          width={1278}
-          height={task.imageHeight}
-          alt={`${task.title} real-world experiment sequence`}
-        />
-      </div>
-      <div className="task-result-card__results">
-        <h4>{task.title}</h4>
-        <div className="bar-legend">
-          <span className="legend-jepa">VLA-JEPA</span>
-          <span className="legend-vpp">VPP</span>
-          <span className="legend-sgwam">SG-WAM</span>
-        </div>
-        {task.settings.map(([setting, jepa, vpp, sgwam]) => (
-          <div className="condition" key={setting}>
-            <span className="condition__name">{setting}</span>
-            <div className="model-bar model-bar--jepa">
-              <i style={{ width: `${jepa}%` }} />
-              <span>{jepa}%</span>
-            </div>
-            <div className="model-bar model-bar--vpp">
-              <i style={{ width: `${vpp}%` }} />
-              <span>{vpp}%</span>
-            </div>
-            <div className="model-bar model-bar--sgwam">
-              <i style={{ width: `${sgwam}%` }} />
-              <strong>{sgwam}%</strong>
-            </div>
-          </div>
-        ))}
-      </div>
+    <article className="experiment-video-card">
+      <video controls muted loop playsInline preload="metadata">
+        <source src={asset(src)} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h3>{title}</h3>
     </article>
   );
 }
@@ -111,69 +100,106 @@ export default function Home() {
 
       <article>
         <section className="hero" id="top">
-          <p className="venue">Research Project Page</p>
+          <div className="project-logo" aria-hidden="true">
+            <span>SG</span>
+            <span>WAM</span>
+          </div>
           <h1>SG-WAM: Self-Guided World Modeling in Geometry-Aware Policy Space</h1>
+          <p className="subtitle">
+            Predicting future dynamics where actions are generated.
+          </p>
           <div className="authors" aria-label="Authors">
             {authors.map(([name, url]) => (
               <a key={name} href={url} target="_blank" rel="noreferrer">{name}</a>
             ))}
           </div>
+          <p className="affiliation">
+            A*STAR · National University of Singapore · Nanyang Technological
+            University · The University of Hong Kong
+          </p>
+          <div className="institution-logos" aria-label="Institutions">
+            <span className="institution-logo institution-logo--lead">
+              <Image
+                className="institution-logo__image institution-logo__image--astar"
+                src={asset("/astar-logo.png")}
+                width={220}
+                height={92}
+                alt="A*STAR logo"
+              />
+            </span>
+          </div>
+          <div className="institution-logos institution-logos--schools" aria-label="Universities">
+            {institutions.map(([name, image, slug]) => (
+              <span className="institution-logo" key={name}>
+                <Image
+                  className={`institution-logo__image institution-logo__image--${slug}`}
+                  src={asset(image)}
+                  width={220}
+                  height={92}
+                  alt={`${name} logo`}
+                />
+              </span>
+            ))}
+          </div>
+          <div className="keywords" aria-label="Research keywords">
+            {keywords.map((keyword) => (
+              <span key={keyword}>{keyword}</span>
+            ))}
+          </div>
           <div className="links" id="paper">
-            <a href="#paper-note">Paper</a>
+            <a href={asset("/sg-wam-overview.pdf")}>Overview</a>
+            <a href="#citation">BibTeX</a>
             <a href="#paper-note">Code</a>
           </div>
           <p className="link-note" id="paper-note">Paper and code links will be added upon release.</p>
         </section>
 
-        <figure className="teaser">
-          <Image
-            src={asset("/comparison.png")}
-            width={1800}
-            height={988}
-            priority
-            alt="Comparison of observation-space, auxiliary latent-space, and SG-WAM policy-space world modeling"
-          />
-          <figcaption>
-            SG-WAM predicts action-conditioned future dynamics directly in a
-            geometry-aware representation shared with the policy.
-          </figcaption>
-        </figure>
+        <section className="hero-media" aria-label="SG-WAM visual overview">
+          <div className="video-frame">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              preload="metadata"
+            >
+              <source src={asset("/video/aaai_demo.mp4")} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </section>
 
         <section className="section" id="abstract">
-          <h2>Abstract</h2>
+          <h2>Overview</h2>
+          <figure className="embedded-figure embedded-figure--intro">
+            <Image
+              src={asset("/intro.png")}
+              width={1836}
+              height={1008}
+              alt="Introductory overview of SG-WAM"
+            />
+            <figcaption>
+              SG-WAM models future dynamics directly in a geometry-aware
+              representation shared with the policy.
+            </figcaption>
+          </figure>
           <p>
-            World Action Models (WAMs) couple action generation with prediction
-            of future states. Their effectiveness depends on whether future
-            dynamics are modeled in a space that is both aligned with action
-            generation and sufficiently geometry-aware to capture where and how
-            actions change the scene. Existing WAMs typically satisfy only part
-            of this requirement, relying on either perceptually heavy
-            observation-space targets or auxiliary latent spaces that are not
-            jointly structured for action relevance and geometry.
+            World Action Models should predict what changes, where it changes,
+            and how those changes inform the next robot action. Existing
+            approaches often model either expensive observation-space targets or
+            auxiliary latents that are not fully aligned with the acting policy.
           </p>
           <p>
-            We propose SG-WAM, a self-guided framework that learns
-            geometry-aware action-conditioned dynamics directly in the
-            policy-derived representation space. SG-WAM introduces learnable
-            dynamics tokens and a Self-Guided World Predictor that forecasts
-            their future latent states conditioned on intervening robot actions.
-            Prediction targets are generated by an exponential moving average
-            copy of the same policy backbone, providing stable supervision
-            within the representation family used by the action expert.
-          </p>
-          <p>
-            Geometric supervision further structures the policy image-token
-            representations. Latent future prediction, geometric grounding, and
-            flow-matching action generation are jointly optimized end-to-end.
-            Built on a 0.9B model without large-scale embodied pretraining,
-            SG-WAM achieves 98.5% average success on LIBERO and 73% on
-            LIBERO-Plus, while outperforming strong baselines in both
-            in-distribution and out-of-distribution real-world evaluations.
+            SG-WAM learns action-conditioned future dynamics inside the
+            policy-derived representation space and grounds that space with
+            geometric supervision. With a 0.9B model and no large-scale embodied
+            pretraining, it reaches 98.5% on LIBERO and 73.0% on LIBERO-Plus.
           </p>
         </section>
 
         <section className="section" id="method">
-          <h2>Method</h2>
+          <h2>Framework</h2>
           <p className="section-lead">
             SG-WAM unifies latent future prediction, geometric grounding, and
             action generation in the policy representation space.
@@ -207,7 +233,7 @@ export default function Home() {
         </section>
 
         <section className="section" id="results">
-          <h2>Results</h2>
+          <h2>Experiment</h2>
           <p className="section-lead">
             A 0.9B SG-WAM model achieves strong in-distribution performance and
             robust zero-shot transfer without large-scale embodied pretraining.
@@ -218,7 +244,13 @@ export default function Home() {
             <div><strong>0.9B</strong><span>model parameters</span></div>
           </div>
 
-          <h3 className="table-title">LIBERO</h3>
+          <h3 className="table-title table-title--major">Simulation Benchmarks</h3>
+          <p className="table-note">
+            SG-WAM is trained once and evaluated across in-distribution and
+            zero-shot transfer settings.
+          </p>
+
+          <h4 className="table-title">LIBERO</h4>
           <div className="table-wrap">
             <table>
               <thead><tr><th>Spatial</th><th>Object</th><th>Goal</th><th>Long</th><th>Average</th></tr></thead>
@@ -226,7 +258,7 @@ export default function Home() {
             </table>
           </div>
 
-          <h3 className="table-title">LIBERO-Plus</h3>
+          <h4 className="table-title">LIBERO-Plus</h4>
           <div className="table-wrap">
             <table>
               <thead><tr><th>Camera</th><th>Robot</th><th>Language</th><th>Light</th><th>Background</th><th>Noise</th><th>Layout</th><th>Average</th></tr></thead>
@@ -237,36 +269,84 @@ export default function Home() {
           <h3 className="table-title table-title--major">Real-world evaluation</h3>
           <p className="table-note">
             Success rates under different visual perturbations. SG-WAM is shown
-            in blue.
+            in bold.
           </p>
-          <div className="task-result-list">
-            {realWorldTasks.map((task) => (
-              <TaskResultCard key={task.title} task={task} />
-            ))}
+          <div className="table-wrap real-world-table">
+            <table>
+              <thead>
+                <tr>
+                  <th rowSpan={2}>Model</th>
+                  <th colSpan={4}>Pick and Place</th>
+                  <th colSpan={4}>Towel Folding</th>
+                  <th>Toolbox Organization</th>
+                </tr>
+                <tr>
+                  <th>ID</th>
+                  <th>Background</th>
+                  <th>Light Change</th>
+                  <th>Novel Object</th>
+                  <th>ID</th>
+                  <th>Background</th>
+                  <th>Light Change</th>
+                  <th>Novel Object</th>
+                  <th>ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {realWorldRows.map(([model, ...values]) => (
+                  <tr key={model} className={model === "SG-WAM" ? "highlight-row" : ""}>
+                    <th>{model}</th>
+                    {values.map((value, index) => (
+                      <td key={`${model}-${index}`}>{value}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
           <div className="experiment-figures">
-            <h3>Out-of-distribution settings</h3>
+            <h3>Geometry Attention</h3>
             <figure className="embedded-figure embedded-figure--compact">
               <Image
-                src={asset("/ood-settings.png")}
-                width={1449}
-                height={345}
-                alt="Out-of-distribution evaluation settings"
+                src={asset("/complete-attention-map.png")}
+                width={2769}
+                height={726}
+                alt="Complete geometry attention map visualization from the appendix"
               />
-              <figcaption>Evaluation settings for distribution shifts.</figcaption>
+              <figcaption>
+                Complete visualization of geometry-aware attention from the
+                appendix.
+              </figcaption>
             </figure>
+          </div>
+        </section>
 
-            <h3>Geometry attention</h3>
-            <figure className="embedded-figure embedded-figure--compact">
-              <Image
-                src={asset("/attention-map.png")}
-                width={1086}
-                height={684}
-                alt="Geometry attention map visualization"
-              />
-              <figcaption>Visualization of geometry-aware attention.</figcaption>
-            </figure>
+        <section className="video-showcase" aria-label="Experiment videos">
+          <div className="video-showcase__heading">
+            <h2>Experiment Videos</h2>
+            <p>
+              Rollout examples from the simulation and real-world experiments
+              described in the AAAI 2027 manuscript.
+            </p>
+          </div>
+
+          <div className="video-group">
+            <h3>LIBERO-Plus Zero-Shot Perturbations</h3>
+            <div className="experiment-video-grid experiment-video-grid--compact">
+              {liberoVideos.map(([title, src]) => (
+                <ExperimentVideoCard key={title} title={title} src={src} />
+              ))}
+            </div>
+          </div>
+
+          <div className="video-group">
+            <h3>Real-World Deployment</h3>
+            <div className="experiment-video-grid">
+              {realDeploymentVideos.map(([title, src]) => (
+                <ExperimentVideoCard key={title} title={title} src={src} />
+              ))}
+            </div>
           </div>
         </section>
 

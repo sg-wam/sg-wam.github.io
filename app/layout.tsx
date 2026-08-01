@@ -9,10 +9,10 @@ const siteUrl = (
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}/`),
-  title: "SG-WAM — Self-Guided World Modeling",
+  title: "SG-WAM - Self-Guided World Modeling",
   description,
   openGraph: {
-    title: "SG-WAM — Model the Future Where Actions Are Made",
+    title: "SG-WAM - Model the Future Where Actions Are Made",
     description,
     url: siteUrl,
     siteName: "SG-WAM",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SG-WAM — Model the Future Where Actions Are Made",
+    title: "SG-WAM - Model the Future Where Actions Are Made",
     description,
     images: [`${siteUrl}/og.png`],
   },
