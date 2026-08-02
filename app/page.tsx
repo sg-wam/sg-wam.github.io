@@ -2,6 +2,7 @@
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${basePath}${path}`;
+const paperUrl = "#paper-note";
 
 const authors = [
   ["Ruiteng Zhao", "https://scholar.google.com/citations?user=P0TNo5gAAAAJ&hl=3n", "1"],
@@ -9,7 +10,7 @@ const authors = [
   ["Yue Su", "https://scholar.google.com/citations?user=TUVYCcIAAAAJ&hl=en", "2"],
   ["Wenshuo Wang", "https://scholar.google.com/citations?user=PFp3jbAAAAAJ&hl=en", "1"],
   ["Jiahui Li", "https://scholar.google.com/citations?user=bMaupo8AAAAJ&hl=en", "1"],
-  ["Zhiyuan Yang", "https://scholar.google.com/citations?user=mgJ8L7MAAAAJ&hl=en", "3"],
+  ["Zhiyuan Yang", "https://scholar.google.com/citations?user=RZBaKLsAAAAJ&hl=en", "3"],
   ["Francis E. H. Tay", "https://scholar.google.com/citations?user=mfH9UFIAAAAJ&hl=en", "1"],
   ["Marcelo H. Ang Jr.", "https://scholar.google.com/citations?user=dMogb2EAAAAJ&hl=en", "1"],
   ["Haiyue Zhu", "https://scholar.google.com/citations?user=uO_R9wQAAAAJ&hl=en", "4,†"],
@@ -122,7 +123,7 @@ export default function Home() {
       <header className="topbar">
         <a className="brand" href="#top">SG-WAM</a>
         <nav aria-label="Page sections">
-          <a href="#abstract">Abstract</a>
+          <a href="#abstract">Overview</a>
           <a href="#method">Method</a>
           <a href="#results">Results</a>
           <a href="#citation">Citation</a>
@@ -184,10 +185,11 @@ export default function Home() {
             </span>
           </div>
           <div className="links" id="paper">
-            <a href={asset("/sg-wam-overview.pdf")}>Overview</a>
-            <a href="#citation">BibTeX</a>
+            <a href={paperUrl}>Paper</a>
+            <a href="#citation">Bibtex</a>
             <a href="#paper-note">Code</a>
           </div>
+          <p className="link-note" id="paper-note">arXiv paper and code links will be added upon release.</p>
         </section>
 
         <section className="hero-media" aria-label="SG-WAM visual overview">
