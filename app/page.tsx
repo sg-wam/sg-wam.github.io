@@ -1,32 +1,34 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${basePath}${path}`;
 
 const authors = [
-  ["Ruiteng Zhao", "https://openreview.net/profile?id=~Ruiteng_Zhao1"],
-  ["Zhengshen Zhang", "https://openreview.net/profile?id=~Zhengshen_Zhang1"],
-  ["Yue Su", "https://openreview.net/profile?id=~Yue_Su1"],
-  ["Wenshuo Wang", "https://openreview.net/profile?id=~Wenshuo_Wang8"],
-  ["Jiahui Li", "https://openreview.net/profile?id=~Jiahui_Li10"],
-  ["Zhiyuan Yang", "https://openreview.net/profile?id=~Zhiyuan_Yang6"],
-  ["Francis E. H. Tay", "https://openreview.net/profile?id=~Francis_E._H._Tay1"],
-  ["Marcelo H. Ang Jr", "https://openreview.net/profile?id=~Marcelo_H_Ang_Jr1"],
-  ["Haiyue Zhu", "https://openreview.net/profile?id=~Haiyue_Zhu1"],
+  ["Ruiteng Zhao", "https://scholar.google.com/citations?user=P0TNo5gAAAAJ&hl=3n", "1"],
+  ["Zhengshen Zhang", "https://scholar.google.com/citations?user=8nrJ1vsAAAAJ&hl=en", "1"],
+  ["Yue Su", "https://scholar.google.com/citations?user=TUVYCcIAAAAJ&hl=en", "2"],
+  ["Wenshuo Wang", "https://scholar.google.com/citations?user=PFp3jbAAAAAJ&hl=en", "1"],
+  ["Jiahui Li", "https://scholar.google.com/citations?user=bMaupo8AAAAJ&hl=en", "1"],
+  ["Zhiyuan Yang", "https://scholar.google.com/citations?user=mgJ8L7MAAAAJ&hl=en", "3"],
+  ["Francis E. H. Tay", "https://scholar.google.com/citations?user=mfH9UFIAAAAJ&hl=en", "1"],
+  ["Marcelo H. Ang Jr.", "https://scholar.google.com/citations?user=dMogb2EAAAAJ&hl=en", "1"],
+  ["Haiyue Zhu", "https://scholar.google.com/citations?user=uO_R9wQAAAAJ&hl=en", "4,†"],
+] as const;
+
+const affiliations = [
+  ["1", "Advanced Robotics Centre, National University of Singapore"],
+  ["2", "MMLab, The University of Hong Kong"],
+  ["3", "Nanyang Technological University"],
+  [
+    "4",
+    "Singapore Institute of Manufacturing Technology, Agency for Science, Technology and Research (A*STAR)",
+  ],
 ] as const;
 
 const institutions = [
   ["National University of Singapore", "/nus-logo-clean.png", "nus"],
   ["Nanyang Technological University", "/ntu-logo-clean.png", "ntu"],
   ["The University of Hong Kong", "/hku-logo-cropped.png", "hku"],
-] as const;
-
-const keywords = [
-  "Vision-Language-Action",
-  "World Action Modeling",
-  "Geometry-Aware Policy",
-  "Robotic Manipulation",
-  "Latent Dynamics",
 ] as const;
 
 const bibtex = `@misc{zhao2027sgwam,
@@ -45,6 +47,35 @@ const realWorldRows = [
   ["SG-WAM", "75%", "55%", "60%", "40%", "45%", "25%", "35%", "25%", "50%"],
 ] as const;
 
+const liberoRows = [
+  ["OpenVLA-OFT", "7B", "Y", "97.6", "98.4", "97.9", "94.5", "97.1"],
+  ["pi0", "3.3B", "Y", "98.0", "96.8", "94.4", "88.4", "94.4"],
+  ["pi0-FAST", "3.3B", "Y", "96.4", "96.8", "88.6", "60.2", "85.5"],
+  ["pi0.5", "3.3B", "Y", "98.8", "98.2", "98.0", "92.4", "96.9"],
+  ["GR00T N1.6", "3B", "Y", "97.7", "98.5", "97.5", "94.4", "97.0"],
+  ["Spatial Forcing", "7B", "Y", "99.4", "99.6", "98.8", "96.0", "98.5"],
+  ["WorldVLA", "7B", "N", "87.6", "96.2", "83.4", "60.0", "81.8"],
+  ["LAPA", "7B", "Y", "55.4", "58.8", "74.6", "73.8", "65.7"],
+  ["RynnVLA-002", "7B", "N", "99.0", "99.8", "96.4", "94.4", "97.4"],
+  ["Mantis", "5.8B", "Y", "98.8", "99.2", "94.4", "94.2", "96.7"],
+  ["UniVLA", "7B", "Y", "96.5", "96.8", "95.6", "92.0", "95.2"],
+  ["Fast-WAM", "6B", "N", "98.2", "100.0", "97.0", "95.2", "97.6"],
+  ["VLA-JEPA", "2B", "N", "94.8", "99.6", "95.8", "94.0", "96.1"],
+  ["SG-WAM", "0.9B", "N", "99.4", "99.8", "98.6", "96.2", "98.5"],
+] as const;
+
+const liberoPlusRows = [
+  ["WorldVLA", "7B", "0.1", "27.9", "41.6", "43.7", "17.1", "10.9", "38.0", "25.0"],
+  ["Spatial Forcing", "7B", "20.1", "13.4", "40.9", "29.1", "33.4", "25.7", "39.3", "29.1"],
+  ["Mantis", "5.8B", "15.7", "41.8", "45.9", "45.1", "28.9", "39.2", "62.5", "39.8"],
+  ["UniVLA", "7B", "4.3", "50.3", "71.8", "59.1", "80.0", "25.3", "34.3", "41.5"],
+  ["Fast-WAM", "6B", "16.4", "44.5", "68.9", "78.2", "53.7", "37.7", "60.7", "50.0"],
+  ["pi0", "3.3B", "13.8", "6.0", "58.8", "85.0", "81.4", "79.0", "68.9", "53.6"],
+  ["VLA-JEPA", "2B", "40.3", "55.7", "72.9", "88.2", "70.5", "38.2", "74.6", "62.9"],
+  ["OpenVLA-OFT", "7B", "56.4", "31.9", "79.5", "88.7", "93.3", "75.8", "74.2", "69.6"],
+  ["SG-WAM", "0.9B", "58.6", "48.9", "81.4", "89.8", "86.1", "80.7", "74.2", "73.0"],
+] as const;
+
 const liberoVideos = [
   ["Camera Viewpoint", "/video/libero_exp/ce8b996470bc2c749b9dbc44b7e49be0.mp4"],
   ["Sensor Noise", "/video/libero_exp/ac1789a6692939716fcbb8d6274d083b.mp4"],
@@ -56,15 +87,15 @@ const liberoVideos = [
 ] as const;
 
 const realDeploymentVideos = [
-  ["Pick and Place", "/video/real_deployment_exp/d24d226f7f8d8051deb5aba14b037502.mp4"],
-  ["Pick and Place - Background", "/video/real_deployment_exp/f1e76ffffa17323b17b3cf93c5b409ca.mp4"],
-  ["Pick and Place - Light", "/video/real_deployment_exp/56981ef9461afa6f53938f1936740a57.mp4"],
+  ["Pick and Place - In-Distribution", "/video/real_deployment_exp/d24d226f7f8d8051deb5aba14b037502.mp4"],
+  ["Pick and Place - Background Shift", "/video/real_deployment_exp/f1e76ffffa17323b17b3cf93c5b409ca.mp4"],
+  ["Pick and Place - Light Change", "/video/real_deployment_exp/56981ef9461afa6f53938f1936740a57.mp4"],
   ["Pick and Place - Novel Object", "/video/real_deployment_exp/2729c09e61335607f39be93cd605cecb.mp4"],
-  ["Towel Folding", "/video/real_deployment_exp/d232119f9ccfed6f429dbd14faa0836c.mp4"],
-  ["Towel Folding - Background", "/video/real_deployment_exp/ood.mp4"],
-  ["Towel Folding - Light", "/video/real_deployment_exp/9ad9cb74b4c3ac244c0a6b2e2f4a3b41.mp4"],
+  ["Towel Folding - In-Distribution", "/video/real_deployment_exp/d232119f9ccfed6f429dbd14faa0836c.mp4"],
+  ["Towel Folding - Background Shift", "/video/real_deployment_exp/ood.mp4"],
+  ["Towel Folding - Light Change", "/video/real_deployment_exp/9ad9cb74b4c3ac244c0a6b2e2f4a3b41.mp4"],
   ["Towel Folding - Novel Object", "/video/real_deployment_exp/e4a628445d3247f2c4bcf6a3200b52ee.mp4"],
-  ["Toolbox Organization", "/video/real_deployment_exp/a77f18e9953e0c8ef1a9ce7ea2cf626e.mp4"],
+  ["Toolbox Organization - In-Distribution", "/video/real_deployment_exp/a77f18e9953e0c8ef1a9ce7ea2cf626e.mp4"],
 ] as const;
 
 function ExperimentVideoCard({
@@ -109,24 +140,24 @@ export default function Home() {
             Predicting future dynamics where actions are generated.
           </p>
           <div className="authors" aria-label="Authors">
-            {authors.map(([name, url]) => (
-              <a key={name} href={url} target="_blank" rel="noreferrer">{name}</a>
+            {authors.map(([name, url, affiliation]) => (
+              <a key={name} href={url} target="_blank" rel="noreferrer">
+                {name}
+                <sup>{affiliation}</sup>
+              </a>
             ))}
           </div>
-          <p className="affiliation">
-            A*STAR · National University of Singapore · Nanyang Technological
-            University · The University of Hong Kong
-          </p>
-          <div className="institution-logos" aria-label="Institutions">
-            <span className="institution-logo institution-logo--lead">
-              <Image
-                className="institution-logo__image institution-logo__image--astar"
-                src={asset("/astar-logo.png")}
-                width={220}
-                height={92}
-                alt="A*STAR logo"
-              />
-            </span>
+          <div className="affiliations" aria-label="Affiliations">
+            {affiliations.map(([index, label]) => (
+              <p key={index}>
+                <sup>{index}</sup>
+                {label}
+              </p>
+            ))}
+            <p>
+              <sup>†</sup>
+              Corresponding author
+            </p>
           </div>
           <div className="institution-logos institution-logos--schools" aria-label="Universities">
             {institutions.map(([name, image, slug]) => (
@@ -141,17 +172,22 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <div className="keywords" aria-label="Research keywords">
-            {keywords.map((keyword) => (
-              <span key={keyword}>{keyword}</span>
-            ))}
+          <div className="institution-logos institution-logos--astar" aria-label="Institutions">
+            <span className="institution-logo institution-logo--lead">
+              <Image
+                className="institution-logo__image institution-logo__image--astar"
+                src={asset("/astar-logo.png")}
+                width={220}
+                height={92}
+                alt="A*STAR logo"
+              />
+            </span>
           </div>
           <div className="links" id="paper">
             <a href={asset("/sg-wam-overview.pdf")}>Overview</a>
             <a href="#citation">BibTeX</a>
             <a href="#paper-note">Code</a>
           </div>
-          <p className="link-note" id="paper-note">Paper and code links will be added upon release.</p>
         </section>
 
         <section className="hero-media" aria-label="SG-WAM visual overview">
@@ -251,18 +287,60 @@ export default function Home() {
           </p>
 
           <h4 className="table-title">LIBERO</h4>
-          <div className="table-wrap">
+          <div className="table-wrap benchmark-table">
             <table>
-              <thead><tr><th>Spatial</th><th>Object</th><th>Goal</th><th>Long</th><th>Average</th></tr></thead>
-              <tbody><tr><td>99.4</td><td>99.8</td><td>98.6</td><td>96.2</td><td><strong>98.5</strong></td></tr></tbody>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Params</th>
+                  <th>Embodied PT.</th>
+                  <th>Spatial</th>
+                  <th>Object</th>
+                  <th>Goal</th>
+                  <th>Long</th>
+                  <th>Avg.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {liberoRows.map(([method, ...values]) => (
+                  <tr key={method} className={method === "SG-WAM" ? "highlight-row" : ""}>
+                    <th>{method}</th>
+                    {values.map((value, index) => (
+                      <td key={`${method}-${index}`}>{value}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
 
           <h4 className="table-title">LIBERO-Plus</h4>
-          <div className="table-wrap">
+          <div className="table-wrap benchmark-table">
             <table>
-              <thead><tr><th>Camera</th><th>Robot</th><th>Language</th><th>Light</th><th>Background</th><th>Noise</th><th>Layout</th><th>Average</th></tr></thead>
-              <tbody><tr><td>58.6</td><td>48.9</td><td>81.4</td><td>89.8</td><td>86.1</td><td>80.7</td><td>74.2</td><td><strong>73.0</strong></td></tr></tbody>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Params</th>
+                  <th>Camera</th>
+                  <th>Robot</th>
+                  <th>Language</th>
+                  <th>Light</th>
+                  <th>Background</th>
+                  <th>Noise</th>
+                  <th>Layout</th>
+                  <th>Overall</th>
+                </tr>
+              </thead>
+              <tbody>
+                {liberoPlusRows.map(([method, ...values]) => (
+                  <tr key={method} className={method === "SG-WAM" ? "highlight-row" : ""}>
+                    <th>{method}</th>
+                    {values.map((value, index) => (
+                      <td key={`${method}-${index}`}>{value}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
 
@@ -281,15 +359,15 @@ export default function Home() {
                   <th>Toolbox Organization</th>
                 </tr>
                 <tr>
-                  <th>ID</th>
-                  <th>Background</th>
+                  <th>In-Distribution</th>
+                  <th>Background Shift</th>
                   <th>Light Change</th>
                   <th>Novel Object</th>
-                  <th>ID</th>
-                  <th>Background</th>
+                  <th>In-Distribution</th>
+                  <th>Background Shift</th>
                   <th>Light Change</th>
                   <th>Novel Object</th>
-                  <th>ID</th>
+                  <th>In-Distribution</th>
                 </tr>
               </thead>
               <tbody>
@@ -326,8 +404,7 @@ export default function Home() {
           <div className="video-showcase__heading">
             <h2>Experiment Videos</h2>
             <p>
-              Rollout examples from the simulation and real-world experiments
-              described in the AAAI 2027 manuscript.
+              We evaluated SG-WAM in both simulation and real-world deployment.
             </p>
           </div>
 

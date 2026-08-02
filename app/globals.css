@@ -85,7 +85,25 @@ h1 {
   font-size: 16px;
   line-height: 1.7;
 }
-.affiliation { margin: 12px auto 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.authors sup {
+  margin-left: 2px;
+  color: var(--muted);
+  font-size: 0.7em;
+  line-height: 0;
+}
+.affiliations {
+  max-width: 880px;
+  margin: 14px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.affiliations p { margin: 2px 0; }
+.affiliations sup {
+  margin-right: 4px;
+  color: var(--accent);
+  font-weight: 700;
+}
 .institution-logos {
   max-width: 840px;
   margin: 20px auto 0;
@@ -95,10 +113,12 @@ h1 {
 }
 .institution-logos--schools {
   max-width: 820px;
-  margin-top: 8px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+.institution-logos--astar {
+  margin-top: 8px;
 }
 .institution-logo {
   height: 86px;
@@ -135,23 +155,7 @@ h1 {
   width: 252px;
   max-height: 82px;
 }
-.keywords {
-  margin: 24px auto 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.keywords span {
-  padding: 5px 10px;
-  border: 1px solid #d3d8df;
-  border-radius: 999px;
-  background: #fff;
-  color: #4c5968;
-  font-size: 13px;
-  line-height: 1.35;
-}
-.links { display: flex; justify-content: center; gap: 12px; margin-top: 28px; }
+.links { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
 .links a {
   min-width: 96px;
   padding: 8px 18px;
@@ -232,7 +236,7 @@ h1 {
   width: 100%;
   aspect-ratio: 4 / 3;
   background: #0f1621;
-  object-fit: cover;
+  object-fit: contain;
 }
 .experiment-video-card h3 {
   min-height: 48px;
@@ -323,6 +327,19 @@ table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: cen
 th, td { min-width: 82px; padding: 10px 12px; border: 1px solid var(--line); }
 th { background: var(--soft); font-weight: 600; }
 .table-note { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+.benchmark-table table {
+  min-width: 880px;
+  font-size: 13px;
+}
+.benchmark-table th:first-child,
+.benchmark-table td:first-child {
+  min-width: 145px;
+  text-align: left;
+}
+.benchmark-table td,
+.benchmark-table th {
+  padding: 8px 10px;
+}
 .real-world-table {
   margin-top: 18px;
 }
