@@ -105,20 +105,16 @@ h1 {
   font-weight: 700;
 }
 .institution-logos {
-  max-width: 840px;
+  max-width: 980px;
   margin: 20px auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.institution-logos--schools {
-  max-width: 820px;
+.institution-logos--all {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.institution-logos--astar {
-  margin-top: 8px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
 }
 .institution-logo {
   height: 86px;
@@ -129,9 +125,6 @@ h1 {
 .institution-logo:has(.institution-logo__image--hku) {
   overflow: visible;
 }
-.institution-logo--lead {
-  width: 210px;
-}
 .institution-logo__image {
   display: block;
   width: auto;
@@ -140,19 +133,19 @@ h1 {
   filter: saturate(.92);
 }
 .institution-logo__image--astar {
-  width: 174px;
+  width: 164px;
   max-height: 62px;
 }
 .institution-logo__image--nus {
-  width: 218px;
+  width: 204px;
   max-height: 78px;
 }
 .institution-logo__image--ntu {
-  width: 228px;
+  width: 214px;
   max-height: 78px;
 }
 .institution-logo__image--hku {
-  width: 252px;
+  width: 234px;
   max-height: 82px;
 }
 .links { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
@@ -387,9 +380,8 @@ footer {
   .hero { padding-top: 54px; }
   h1 { font-size: 36px; }
   .subtitle { font-size: 18px; }
-  .institution-logos--schools { grid-template-columns: 1fr; gap: 8px; }
+  .institution-logos--all { grid-template-columns: 1fr; gap: 8px; }
   .institution-logo { height: 72px; }
-  .institution-logo--lead { width: 190px; }
   .institution-logo__image--astar { width: 154px; }
   .institution-logo__image--nus { width: 196px; }
   .institution-logo__image--ntu { width: 204px; }

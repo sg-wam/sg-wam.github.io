@@ -3,6 +3,7 @@
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${basePath}${path}`;
 const paperUrl = "#paper-note";
+const codeUrl = "https://github.com/ReturnZhao/SG-WAM";
 
 const authors = [
   ["Ruiteng Zhao", "https://scholar.google.com/citations?user=P0TNo5gAAAAJ&hl=3n", "1"],
@@ -30,6 +31,7 @@ const institutions = [
   ["National University of Singapore", "/nus-logo-clean.png", "nus"],
   ["Nanyang Technological University", "/ntu-logo-clean.png", "ntu"],
   ["The University of Hong Kong", "/hku-logo-cropped.png", "hku"],
+  ["A*STAR", "/astar-logo.png", "astar"],
 ] as const;
 
 const bibtex = `@misc{zhao2027sgwam,
@@ -160,7 +162,7 @@ export default function Home() {
               Corresponding author
             </p>
           </div>
-          <div className="institution-logos institution-logos--schools" aria-label="Universities">
+          <div className="institution-logos institution-logos--all" aria-label="Institutions">
             {institutions.map(([name, image, slug]) => (
               <span className="institution-logo" key={name}>
                 <Image
@@ -173,21 +175,10 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <div className="institution-logos institution-logos--astar" aria-label="Institutions">
-            <span className="institution-logo institution-logo--lead">
-              <Image
-                className="institution-logo__image institution-logo__image--astar"
-                src={asset("/astar-logo.png")}
-                width={220}
-                height={92}
-                alt="A*STAR logo"
-              />
-            </span>
-          </div>
           <div className="links" id="paper">
             <a href={paperUrl}>Paper</a>
             <a href="#citation">Bibtex</a>
-            <a href="#paper-note">Code</a>
+            <a href={codeUrl} target="_blank" rel="noreferrer">Code</a>
           </div>
           <p className="link-note" id="paper-note">arXiv paper and code links will be added upon release.</p>
         </section>
