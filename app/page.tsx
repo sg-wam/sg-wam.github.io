@@ -2,7 +2,7 @@
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${basePath}${path}`;
-const paperUrl = "#paper-note";
+const paperUrl = "#";
 const codeUrl = "https://github.com/ReturnZhao/SG-WAM";
 
 const authors = [
@@ -29,8 +29,8 @@ const affiliations = [
 
 const institutions = [
   ["National University of Singapore", "/nus-logo-clean.png", "nus"],
-  ["Nanyang Technological University", "/ntu-logo-clean.png", "ntu"],
   ["The University of Hong Kong", "/hku-logo-cropped.png", "hku"],
+  ["Nanyang Technological University", "/ntu-logo-clean.png", "ntu"],
   ["A*STAR", "/astar-logo.png", "astar"],
 ] as const;
 
@@ -180,7 +180,6 @@ export default function Home() {
             <a href="#citation">Bibtex</a>
             <a href={codeUrl} target="_blank" rel="noreferrer">Code</a>
           </div>
-          <p className="link-note" id="paper-note">arXiv paper and code links will be added upon release.</p>
         </section>
 
         <section className="hero-media" aria-label="SG-WAM visual overview">
