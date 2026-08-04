@@ -176,7 +176,7 @@ export default function Home() {
             ))}
           </div>
           <div className="links" id="paper">
-            <a href={paperUrl} target="_blank" rel="noreferrer">Paper</a>
+            <a href={paperUrl} target="_blank" rel="noreferrer">arXiv</a>
             <a href="#citation">Bibtex</a>
             <a href={codeUrl} target="_blank" rel="noreferrer">Code</a>
           </div>
