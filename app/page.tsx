@@ -2,7 +2,7 @@
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${basePath}${path}`;
-const paperUrl = "#";
+const paperUrl = "https://arxiv.org/abs/2608.01397";
 const codeUrl = "https://github.com/ReturnZhao/SG-WAM";
 
 const authors = [
@@ -34,14 +34,14 @@ const institutions = [
   ["A*STAR", "/astar-logo.png", "astar"],
 ] as const;
 
-const bibtex = `@misc{zhao2027sgwam,
-  title  = {SG-WAM: Self-Guided World Modeling in
-            Geometry-Aware Policy Space},
-  author = {Zhao, Ruiteng and Zhang, Zhengshen and Su, Yue
-            and Wang, Wenshuo and Li, Jiahui and Yang, Zhiyuan
-            and Tay, Francis E. H. and Ang, Jr., Marcelo H.
-            and Zhu, Haiyue},
-  year   = {2027}
+const bibtex = `@misc{zhao2026sgwamselfguidedworldmodeling,
+  title={SG-WAM: Self-Guided World Modeling in Geometry-Aware Policy Space},
+  author={Ruiteng Zhao and Zhengshen Zhang and Yue Su and Wenshuo Wang and Jiahui Li and Zhiyuan Yang and Francis E. H. Tay and Marcelo H. Ang Jr. and Haiyue Zhu},
+  year={2026},
+  eprint={2608.01397},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2608.01397},
 }`;
 
 const realWorldRows = [
@@ -176,7 +176,7 @@ export default function Home() {
             ))}
           </div>
           <div className="links" id="paper">
-            <a href={paperUrl}>Paper</a>
+            <a href={paperUrl} target="_blank" rel="noreferrer">Paper</a>
             <a href="#citation">Bibtex</a>
             <a href={codeUrl} target="_blank" rel="noreferrer">Code</a>
           </div>
